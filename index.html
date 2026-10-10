@@ -5,13 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
   <title>Dra. Ana Oliveira · Nutricionista</title>
 
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥗</text></svg>">
-
-  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
@@ -26,11 +21,10 @@
       --text: #2F3437;
       --muted: #7B8288;
       --radius: 20px;
+      --card-max: 100%;
     }
 
-    * {
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { -webkit-tap-highlight-color: transparent; }
 
     html, body {
       height: 100%;
@@ -38,6 +32,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
+      -webkit-font-smoothing: antialiased;
     }
 
     .stage {
@@ -57,7 +52,6 @@
       cursor: grab;
       touch-action: pan-y;
     }
-
     .cover:active { cursor: grabbing; }
     .cover.is-open { transform: translateX(-100%); }
 
@@ -86,6 +80,7 @@
       padding: 28px 24px calc(28px + env(safe-area-inset-bottom));
       color: #fff;
       z-index: 2;
+      max-width: 600px;
     }
 
     .cover-kicker {
@@ -96,7 +91,6 @@
       color: rgba(255,255,255,0.7);
       margin-bottom: 10px;
     }
-
     .cover-title {
       font-size: 2rem;
       font-weight: 700;
@@ -104,7 +98,6 @@
       letter-spacing: -0.5px;
       margin-bottom: 8px;
     }
-
     .cover-sub {
       font-size: 0.95rem;
       color: rgba(255,255,255,0.85);
@@ -112,7 +105,6 @@
       max-width: 260px;
       margin-bottom: 24px;
     }
-
     .swipe-btn {
       display: inline-flex;
       align-items: center;
@@ -129,15 +121,10 @@
       cursor: pointer;
       transition: transform 0.2s, background 0.2s;
     }
-
     .swipe-btn:active { transform: scale(0.97); }
     .swipe-btn:hover { background: rgba(255, 255, 255, 0.25); }
+    .swipe-btn i { font-size: 1.1rem; }
 
-    .swipe-btn i {
-      font-size: 1.1rem;
-    }
-
-    /* ===== REDES SOCIAIS LATERAIS ===== */
     .cover-socials {
       position: absolute;
       right: 20px;
@@ -148,7 +135,6 @@
       gap: 12px;
       z-index: 3;
     }
-
     .social-glass {
       width: 44px;
       height: 44px;
@@ -164,7 +150,6 @@
       font-size: 1.15rem;
       transition: transform 0.25s, background 0.25s, border-color 0.25s;
     }
-
     .social-glass:hover {
       transform: translateX(-4px) scale(1.05);
       background: rgba(255, 255, 255, 0.22);
@@ -172,54 +157,32 @@
       color: #fff;
     }
 
-    /* ===== PROFILE ===== */
+    /* ===== PROFILE (CORRIGIDO) ===== */
     .profile {
       position: absolute;
       inset: 0;
       z-index: 10;
-      display: flex;
-      flex-direction: column;
       background: var(--bg);
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      /* Centraliza horizontalmente o conteúdo */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
 
     .profile-card {
       width: 100%;
-      max-width: 100%;
-      min-height: 100%;
+      max-width: var(--card-max);
       background: var(--card);
       padding: 0 20px 28px;
       position: relative;
-      flex: 1;
+      /* NÃO tem mais min-height: 100% nem flex: 1 */
+      /* Agora cresce naturalmente conforme o conteúdo */
     }
 
-    @media (min-width: 480px) {
-      .profile {
-        align-items: center;
-        justify-content: center;
-        padding: 24px 16px;
-        background:
-          radial-gradient(ellipse 80% 50% at 20% 0%, rgba(95, 174, 88, 0.1), transparent),
-          radial-gradient(ellipse 60% 40% at 90% 100%, rgba(95, 174, 88, 0.08), transparent),
-          var(--bg);
-      }
-
-      .profile-card {
-        max-width: 420px;
-        min-height: auto;
-        border-radius: 28px;
-        padding: 0 20px 22px;
-        box-shadow: 0 20px 50px rgba(47, 52, 55, 0.08);
-        border: 1px solid var(--border);
-        flex: none;
-      }
-
-      .hero {
-        border-radius: 28px 28px 0 0 !important;
-      }
-    }
-
+    /* Floating buttons */
     .float-btn {
       position: absolute;
       top: calc(12px + env(safe-area-inset-top));
@@ -238,12 +201,12 @@
       transition: transform 0.2s, background 0.2s;
       font-size: 1rem;
     }
-
     .float-btn:active { transform: scale(0.9); }
     .float-btn:hover { background: #fff; }
     .float-btn.back { left: 16px; }
     .float-btn.more { right: 16px; }
 
+    /* Hero */
     .hero {
       position: relative;
       width: calc(100% + 40px);
@@ -252,7 +215,6 @@
       overflow: hidden;
       border-radius: 0;
     }
-
     .hero-img {
       width: 100%;
       height: 100%;
@@ -261,7 +223,6 @@
       filter: grayscale(15%) contrast(1.02);
       display: block;
     }
-
     .hero-fade {
       position: absolute;
       inset: 0;
@@ -269,6 +230,7 @@
       pointer-events: none;
     }
 
+    /* Identity */
     .identity {
       display: flex;
       flex-direction: column;
@@ -279,7 +241,6 @@
       position: relative;
       z-index: 2;
     }
-
     .specialty {
       font-size: 0.78rem;
       font-weight: 600;
@@ -288,7 +249,6 @@
       letter-spacing: 1px;
       margin-bottom: 6px;
     }
-
     .name {
       font-size: 1.6rem;
       font-weight: 700;
@@ -296,14 +256,12 @@
       color: var(--text);
       line-height: 1.2;
     }
-
     .crn {
       font-size: 0.8rem;
       color: var(--muted);
       margin-top: 4px;
       font-weight: 500;
     }
-
     .meta {
       display: inline-flex;
       align-items: center;
@@ -317,11 +275,7 @@
       border-radius: 999px;
       font-weight: 500;
     }
-
-    .meta i {
-      color: var(--primary);
-      font-size: 0.9rem;
-    }
+    .meta i { color: var(--primary); font-size: 0.9rem; }
 
     .bio-text {
       font-size: 0.9rem;
@@ -343,7 +297,6 @@
       align-items: center;
       gap: 8px;
     }
-
     .section-label::before {
       content: '';
       width: 4px;
@@ -358,7 +311,6 @@
       gap: 10px;
       margin-bottom: 28px;
     }
-
     .about-card {
       background: var(--primary-soft);
       border-radius: var(--radius);
@@ -367,12 +319,10 @@
       border: 1px solid rgba(95, 174, 88, 0.1);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-
     .about-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 32px rgba(95, 174, 88, 0.15);
     }
-
     .about-icon {
       width: 40px;
       height: 40px;
@@ -385,7 +335,6 @@
       font-size: 1.2rem;
       box-shadow: 0 4px 12px rgba(95, 174, 88, 0.15);
     }
-
     .about-title {
       font-size: 0.75rem;
       font-weight: 700;
@@ -399,7 +348,6 @@
       gap: 10px;
       margin-bottom: 28px;
     }
-
     .specialty-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -411,13 +359,11 @@
       transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
       cursor: pointer;
     }
-
     .specialty-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 32px rgba(95, 174, 88, 0.15);
       border-color: var(--primary);
     }
-
     .specialty-icon {
       width: 36px;
       height: 36px;
@@ -430,12 +376,10 @@
       flex-shrink: 0;
       transition: background 0.2s, color 0.2s;
     }
-
     .specialty-card:hover .specialty-icon {
       background: var(--primary);
       color: #fff;
     }
-
     .specialty-name {
       font-size: 0.85rem;
       font-weight: 600;
@@ -448,7 +392,6 @@
       gap: 14px;
       margin-bottom: 28px;
     }
-
     .ebook-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -459,12 +402,10 @@
       display: flex;
       flex-direction: column;
     }
-
     .ebook-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 32px rgba(95, 174, 88, 0.15);
     }
-
     .ebook-cover {
       width: 100%;
       height: 120px;
@@ -472,7 +413,6 @@
       display: block;
       background: var(--primary-soft);
     }
-
     .ebook-info {
       padding: 12px;
       display: flex;
@@ -480,7 +420,6 @@
       gap: 4px;
       flex: 1;
     }
-
     .ebook-title {
       font-size: 0.82rem;
       font-weight: 700;
@@ -490,17 +429,8 @@
       align-items: center;
       gap: 6px;
     }
-
-    .ebook-title i {
-      color: var(--primary);
-      font-size: 0.9rem;
-    }
-
-    .ebook-count {
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
+    .ebook-title i { color: var(--primary); font-size: 0.9rem; }
+    .ebook-count { font-size: 0.7rem; color: var(--muted); }
     .ebook-btn {
       margin-top: 8px;
       padding: 8px 12px;
@@ -518,19 +448,15 @@
       justify-content: center;
       gap: 4px;
     }
-
-    .ebook-btn:hover {
-      background: var(--primary);
-      color: #fff;
-    }
+    .ebook-btn:hover { background: var(--primary); color: #fff; }
 
     .socials {
       display: flex;
       gap: 10px;
       margin-bottom: 24px;
       justify-content: center;
+      flex-wrap: wrap;
     }
-
     .social {
       width: 48px;
       height: 48px;
@@ -544,7 +470,6 @@
       font-size: 1.2rem;
       transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
     }
-
     .social:hover {
       transform: translateY(-3px);
       background: var(--primary);
@@ -570,12 +495,7 @@
       justify-content: center;
       gap: 8px;
     }
-
-    .cta:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
+    .cta:hover { background: var(--primary-dark); transform: translateY(-2px); }
     .cta:active { transform: scale(0.98); }
 
     .footer {
@@ -586,21 +506,183 @@
       color: var(--muted);
       line-height: 1.6;
     }
-
-    .footer strong {
-      color: var(--text);
-      font-weight: 600;
-    }
+    .footer strong { color: var(--text); font-weight: 600; }
 
     .animate-in {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
+    .animate-in.visible { opacity: 1; transform: translateY(0); }
 
-    .animate-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    /* ============================================
+       RESPONSIVIDADE CORRIGIDA
+       ============================================ */
+
+    /* CELULARES PEQUENOS (até 360px) */
+    @media (max-width: 360px) {
+      .cover-content { padding: 20px 18px calc(20px + env(safe-area-inset-bottom)); }
+      .cover-title { font-size: 1.6rem; }
+      .cover-sub { font-size: 0.85rem; margin-bottom: 18px; }
+      .swipe-btn { padding: 12px 18px; font-size: 0.85rem; }
+      .cover-socials { right: 12px; gap: 8px; }
+      .social-glass { width: 38px; height: 38px; font-size: 1rem; }
+
+      .hero { height: 180px; }
+      .name { font-size: 1.3rem; }
+      .bio-text { font-size: 0.82rem; }
+      .section-label { font-size: 0.9rem; }
+      .about-card { padding: 12px 6px; }
+      .about-icon { width: 34px; height: 34px; font-size: 1rem; }
+      .about-title { font-size: 0.68rem; }
+      .specialty-card { padding: 12px; gap: 10px; }
+      .specialty-icon { width: 32px; height: 32px; font-size: 0.95rem; }
+      .specialty-name { font-size: 0.78rem; }
+      .ebook-cover { height: 100px; }
+      .ebook-title { font-size: 0.75rem; }
+      .ebook-btn { font-size: 0.7rem; padding: 7px 10px; }
+      .social { width: 42px; height: 42px; font-size: 1.05rem; }
+      .cta { height: 48px; font-size: 0.95rem; }
+    }
+
+    /* A PARTIR DE 481px (celulares grandes, tablets, notebooks, desktop) */
+    @media (min-width: 481px) {
+      :root { --card-max: 480px; }
+
+      .profile {
+        padding: 32px 16px;
+        background:
+          radial-gradient(ellipse 80% 50% at 20% 0%, rgba(95, 174, 88, 0.1), transparent),
+          radial-gradient(ellipse 60% 40% at 90% 100%, rgba(95, 174, 88, 0.08), transparent),
+          var(--bg);
+      }
+
+      .profile-card {
+        border-radius: 28px;
+        padding: 0 20px 22px;
+        box-shadow: 0 20px 50px rgba(47, 52, 55, 0.08);
+        border: 1px solid var(--border);
+      }
+
+      .hero {
+        border-radius: 28px 28px 0 0 !important;
+      }
+    }
+
+    /* TABLETS (577px+) */
+    @media (min-width: 577px) {
+      :root { --card-max: 540px; }
+
+      .cover-content { max-width: 600px; padding: 40px 48px calc(40px + env(safe-area-inset-bottom)); }
+      .cover-title { font-size: 2.6rem; }
+      .cover-sub { font-size: 1.05rem; max-width: 320px; }
+      .swipe-btn { padding: 16px 26px; font-size: 1rem; }
+      .cover-socials { right: 32px; gap: 14px; }
+      .social-glass { width: 48px; height: 48px; font-size: 1.25rem; }
+
+      .profile-card { padding: 0 24px 26px; }
+      .hero { height: 280px; }
+      .name { font-size: 1.9rem; }
+      .bio-text { font-size: 0.98rem; max-width: 400px; }
+      .section-label { font-size: 1.1rem; }
+
+      .about-card { padding: 20px 12px; }
+      .about-icon { width: 44px; height: 44px; font-size: 1.3rem; }
+      .about-title { font-size: 0.82rem; }
+
+      .specialty-card { padding: 16px 18px; }
+      .specialty-icon { width: 40px; height: 40px; font-size: 1.2rem; }
+      .specialty-name { font-size: 0.92rem; }
+
+      .ebook-cover { height: 150px; }
+      .ebook-title { font-size: 0.9rem; }
+      .ebook-count { font-size: 0.78rem; }
+      .ebook-btn { font-size: 0.82rem; padding: 10px 14px; }
+
+      .social { width: 54px; height: 54px; font-size: 1.35rem; }
+      .cta { height: 58px; font-size: 1.15rem; }
+    }
+
+    /* NOTEBOOKS (993px+) */
+    @media (min-width: 993px) {
+      :root { --card-max: 600px; }
+
+      .cover-content { max-width: 700px; padding: 48px 64px calc(48px + env(safe-area-inset-bottom)); }
+      .cover-title { font-size: 3rem; }
+      .cover-sub { font-size: 1.15rem; max-width: 360px; }
+      .cover-socials { right: 48px; gap: 16px; }
+      .social-glass { width: 52px; height: 52px; font-size: 1.35rem; }
+
+      .profile { padding: 40px 24px; }
+      .profile-card { padding: 0 28px 30px; }
+      .hero { height: 320px; }
+      .name { font-size: 2.1rem; }
+      .bio-text { font-size: 1.05rem; max-width: 440px; }
+      .section-label { font-size: 1.2rem; margin-bottom: 18px; }
+
+      .about-card { padding: 24px 14px; }
+      .about-icon { width: 50px; height: 50px; font-size: 1.5rem; }
+      .about-title { font-size: 0.9rem; }
+
+      .specialty-card { padding: 18px 20px; }
+      .specialty-icon { width: 44px; height: 44px; font-size: 1.35rem; }
+      .specialty-name { font-size: 1rem; }
+
+      .ebook-cover { height: 170px; }
+      .ebook-title { font-size: 0.98rem; }
+      .ebook-btn { font-size: 0.88rem; padding: 11px 16px; }
+
+      .social { width: 58px; height: 58px; font-size: 1.45rem; }
+      .cta { height: 62px; font-size: 1.2rem; }
+    }
+
+    /* DESKTOPS (1201px+) */
+    @media (min-width: 1201px) {
+      :root { --card-max: 640px; }
+
+      .cover-content { max-width: 800px; padding: 56px 80px calc(56px + env(safe-area-inset-bottom)); }
+      .cover-title { font-size: 3.4rem; }
+      .cover-sub { font-size: 1.25rem; max-width: 400px; margin-bottom: 32px; }
+      .swipe-btn { padding: 18px 30px; font-size: 1.05rem; }
+      .cover-socials { right: 64px; gap: 18px; }
+      .social-glass { width: 56px; height: 56px; font-size: 1.45rem; }
+
+      .profile { padding: 48px 32px; }
+      .profile-card { padding: 0 32px 34px; }
+      .hero { height: 360px; }
+      .name { font-size: 2.3rem; }
+      .bio-text { font-size: 1.1rem; max-width: 480px; }
+
+      .about-icon { width: 54px; height: 54px; font-size: 1.6rem; }
+      .about-title { font-size: 0.95rem; }
+
+      .specialty-card { padding: 20px 22px; }
+      .specialty-icon { width: 48px; height: 48px; font-size: 1.5rem; }
+      .specialty-name { font-size: 1.05rem; }
+
+      .ebook-cover { height: 190px; }
+      .ebook-title { font-size: 1.05rem; }
+      .ebook-count { font-size: 0.85rem; }
+      .ebook-btn { font-size: 0.92rem; padding: 12px 18px; }
+
+      .social { width: 62px; height: 62px; font-size: 1.55rem; }
+      .cta { height: 66px; font-size: 1.25rem; }
+    }
+
+    /* LANDSCAPE EM CELULARES */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .cover-content { padding: 16px 24px; }
+      .cover-title { font-size: 1.5rem; }
+      .cover-sub { font-size: 0.85rem; margin-bottom: 12px; }
+      .swipe-btn { padding: 10px 16px; font-size: 0.85rem; }
+      .cover-socials { top: 50%; gap: 8px; }
+      .social-glass { width: 36px; height: 36px; font-size: 0.95rem; }
+      .hero { height: 140px; }
+      .name { font-size: 1.3rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
@@ -617,13 +699,11 @@
           <i class="bi bi-three-dots-vertical"></i>
         </button>
 
-        <!-- HERO -->
         <div class="hero">
           <img class="hero-img" src="https://i.pinimg.com/736x/ea/b9/e8/eab9e834bce4fd3f90b1386426144ed7.jpg" alt="Dra. Ana Oliveira">
           <div class="hero-fade"></div>
         </div>
 
-        <!-- IDENTITY -->
         <div class="identity">
           <p class="specialty">Nutricionista Clínica</p>
           <h1 class="name">Dra. Ana Oliveira</h1>
@@ -634,12 +714,10 @@
           </div>
         </div>
 
-        <!-- BIO -->
         <p class="bio-text animate-in">
           Ajudo pessoas a emagrecer, ganhar qualidade de vida e criar hábitos alimentares que realmente funcionam.
         </p>
 
-        <!-- SOBRE -->
         <h2 class="section-label animate-in">Sobre a Nutricionista</h2>
         <div class="about-grid animate-in">
           <div class="about-card">
@@ -656,36 +734,16 @@
           </div>
         </div>
 
-        <!-- ESPECIALIDADES -->
         <h2 class="section-label animate-in">Especialidades</h2>
         <div class="specialties-grid animate-in">
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="bi bi-basket"></i></div>
-            <span class="specialty-name">Emagrecimento</span>
-          </div>
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="bi bi-lightning-charge"></i></div>
-            <span class="specialty-name">Hipertrofia</span>
-          </div>
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="bi bi-clipboard2-pulse"></i></div>
-            <span class="specialty-name">Nutrição Clínica</span>
-          </div>
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="bi bi-person-heart"></i></div>
-            <span class="specialty-name">Gestantes</span>
-          </div>
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="bi bi-droplet"></i></div>
-            <span class="specialty-name">Diabetes</span>
-          </div>
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="bi bi-emoji-smile"></i></div>
-            <span class="specialty-name">Nutrição Infantil</span>
-          </div>
+          <div class="specialty-card"><div class="specialty-icon"><i class="bi bi-basket"></i></div><span class="specialty-name">Emagrecimento</span></div>
+          <div class="specialty-card"><div class="specialty-icon"><i class="bi bi-lightning-charge"></i></div><span class="specialty-name">Hipertrofia</span></div>
+          <div class="specialty-card"><div class="specialty-icon"><i class="bi bi-clipboard2-pulse"></i></div><span class="specialty-name">Nutrição Clínica</span></div>
+          <div class="specialty-card"><div class="specialty-icon"><i class="bi bi-person-heart"></i></div><span class="specialty-name">Gestantes</span></div>
+          <div class="specialty-card"><div class="specialty-icon"><i class="bi bi-droplet"></i></div><span class="specialty-name">Diabetes</span></div>
+          <div class="specialty-card"><div class="specialty-icon"><i class="bi bi-emoji-smile"></i></div><span class="specialty-name">Nutrição Infantil</span></div>
         </div>
 
-        <!-- E-BOOKS -->
         <h2 class="section-label animate-in">E-books e Receitas</h2>
         <div class="ebooks-grid animate-in">
           <div class="ebook-card">
@@ -722,30 +780,19 @@
           </div>
         </div>
 
-        <!-- REDES SOCIAIS -->
         <h2 class="section-label animate-in">Redes Sociais</h2>
         <div class="socials animate-in">
-          <a class="social" href="#" aria-label="Instagram">
-            <i class="bi bi-instagram"></i>
-          </a>
-          <a class="social" href="#" aria-label="WhatsApp">
-            <i class="bi bi-whatsapp"></i>
-          </a>
-          <a class="social" href="#" aria-label="TikTok">
-            <i class="bi bi-tiktok"></i>
-          </a>
-          <a class="social" href="#" aria-label="Site">
-            <i class="bi bi-globe"></i>
-          </a>
+          <a class="social" href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a class="social" href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a class="social" href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+          <a class="social" href="#" aria-label="Site"><i class="bi bi-globe"></i></a>
         </div>
 
-        <!-- CTA -->
         <button class="cta animate-in" onclick="window.open('https://wa.me/5500000000000', '_blank')">
           <i class="bi bi-calendar-check"></i>
           Agendar Consulta
         </button>
 
-        <!-- FOOTER -->
         <footer class="footer">
           <p>© 2026 · Dra. Ana Oliveira</p>
           <p>Desenvolvido por <strong>Moisés Cruz</strong><br>Estúdio Digital</p>
@@ -758,23 +805,13 @@
       <img class="cover-img" src="https://i.pinimg.com/736x/ea/b9/e8/eab9e834bce4fd3f90b1386426144ed7.jpg" alt="Capa Dra. Ana Oliveira">
       <div class="cover-gradient"></div>
 
-      <!-- REDES SOCIAIS LATERAIS -->
       <div class="cover-socials">
-        <a class="social-glass" href="#" aria-label="Instagram">
-          <i class="bi bi-instagram"></i>
-        </a>
-        <a class="social-glass" href="#" aria-label="WhatsApp">
-          <i class="bi bi-whatsapp"></i>
-        </a>
-        <a class="social-glass" href="#" aria-label="TikTok">
-          <i class="bi bi-tiktok"></i>
-        </a>
-        <a class="social-glass" href="#" aria-label="Site">
-          <i class="bi bi-globe"></i>
-        </a>
+        <a class="social-glass" href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a class="social-glass" href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        <a class="social-glass" href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        <a class="social-glass" href="#" aria-label="Site"><i class="bi bi-globe"></i></a>
       </div>
 
-      <!-- CONTEÚDO INFERIOR -->
       <div class="cover-content">
         <p class="cover-kicker">Nutrição Clínica</p>
         <h1 class="cover-title">Dra. Ana Oliveira</h1>
@@ -804,25 +841,14 @@
       cover.classList.toggle('is-open', open);
     }
 
-    openBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      setOpen(true);
-    });
-
+    openBtn.addEventListener('click', (e) => { e.stopPropagation(); setOpen(true); });
     closeBtn.addEventListener('click', () => setOpen(false));
 
-    function onStart(x) {
-      dragging = true;
-      startX = x;
-      currentX = x;
-      cover.style.transition = 'none';
-    }
-
+    function onStart(x) { dragging = true; startX = x; currentX = x; cover.style.transition = 'none'; }
     function onMove(x) {
       if (!dragging) return;
       currentX = x;
       const delta = currentX - startX;
-
       if (!open) {
         const translate = Math.min(0, Math.max(delta, -window.innerWidth));
         cover.style.transform = `translateX(${translate}px)`;
@@ -832,27 +858,19 @@
         cover.style.transform = `translateX(${translate}px)`;
       }
     }
-
     function onEnd() {
       if (!dragging) return;
       dragging = false;
       cover.style.transition = 'transform 0.55s cubic-bezier(0.32, 0.72, 0, 1)';
       const delta = currentX - startX;
-
       if (!open) {
         if (delta < -60) setOpen(true);
-        else {
-          cover.style.transform = '';
-          setOpen(false);
-        }
+        else { cover.style.transform = ''; setOpen(false); }
       } else {
         if (delta > 60) setOpen(false);
         else setOpen(true);
       }
-
-      requestAnimationFrame(() => {
-        if (!dragging) cover.style.transform = '';
-      });
+      requestAnimationFrame(() => { if (!dragging) cover.style.transform = ''; });
     }
 
     cover.addEventListener('touchstart', (e) => onStart(e.touches[0].clientX), { passive: true });
@@ -862,17 +880,17 @@
     window.addEventListener('mousemove', (e) => onMove(e.clientX));
     window.addEventListener('mouseup', onEnd);
 
+    window.addEventListener('resize', () => {
+      if (open) cover.style.transform = 'translateX(-100%)';
+    });
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.animate-in').forEach((el) => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.animate-in').forEach((el) => observer.observe(el));
   </script>
 </body>
 </html>
